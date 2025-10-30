@@ -1,0 +1,181 @@
+* {
+    color: white;
+    background-color: cornflowerblue;
+    outline: none;
+    margin: 0;
+}
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+
+header {
+  grid-area: header;
+}
+
+aside {
+  grid-area: aside;
+}
+
+main {
+  grid-area: main;
+}
+
+nav {
+  grid-area: nav;
+}
+
+footer {
+    grid-area: footer;
+}
+
+.layout-pagina {
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "aside main"
+        "nav nav"
+        "footer footer";
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+nav article fieldset {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+nav article fieldset label,nav article fieldset input[type="submit"]
+{
+    width: 80%;
+    flex: none;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+nav article fieldset input:not([type="submit"]),nav article fieldset textarea,nav article fieldset select{
+    width: 80%;
+    flex: none;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid black;
+    color: cornflowerblue;
+}
+
+nav article fieldset input[type="submit"]:hover
+{
+    background-color: #ffffff;
+    color:cornflowerblue;
+}
+
+ul {
+    margin-left: 0;
+    padding-left: 0;
+    margin-right: 0.5rem;
+}
+ul li {
+    list-style: none;
+    padding: 0.5rem 1rem;
+    background-color: darkmagenta;
+    
+}
+
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
+ul li:hover {
+    background-color: #ffffff;
+    color: cornflowerblue;
+}
+
+h1,nav h2 {
+    text-align: center;
+}
+
+fieldset {
+    border: none;
+    text-align: center;
+}
+
+
+footer {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  height: 80px;
+  background-color: #cacaca;  
+  color: white;
+  margin: 0;
+  bottom: 0;
+}
+footer p{
+    background-color: #cacaca;
+    
+}
+
+@media screen and (min-width: 720px){
+
+    * {
+        margin: 0;
+        padding: 0 auto;
+        box-sizing: border-box;
+    }
+
+    aside nav,aside nav ul {
+        display: flex;
+        top: 0px;
+        justify-content: flex-end;
+        width: 100vw;
+        background-color: darkmagenta;
+        position: fixed;
+        z-index: 1;
+        height: 50px;
+    }
+
+    nav ul a,nav ul li {
+        height: inherit;
+    }
+
+    .layout-pagina {
+    display: grid;
+    grid-template-areas: 
+        "aside"
+        "header"
+        "main"
+        "nav"
+        "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    min-height: 100vh;
+    }
+
+    header {
+        position: fixed;
+        display: flex;
+        justify-content: center; 
+        align-items: center;     
+        height: 40px;   
+        z-index: 2;    
+           
+    }
+
+    header h1 {
+        background-color: darkmagenta;
+    }
+
+    article {
+        margin-top: 50px;
+    }
+}

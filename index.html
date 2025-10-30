@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>iONG - Sistema de Gerenciamento de atividades das ONGs</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/principal.css">
+    </head>
+    <body class="layout-pagina">
+        <header>
+            <h1>Bem vindo ao iONG, sua plataforma de gerenciamento de atividades</h1>
+        </header>
+
+        <aside>
+            <nav aria-label="Navegação Principal">
+                <ul>
+                    <a href="index.html"><li>Home</li></a>
+                    <a href="#signup"><li>Cadastre</li></a>
+                    <a href="#share"><li>Divulgue</li></a>
+                    <a href="#donate"><li>Doe</li></a>
+                    <a href="#about"><li>Sobre</li></a>
+                    <a href="#contacts"><li>Trabalhe conosco</li></a>
+                </ul>
+            </nav>
+        </aside>
+
+
+        <main>
+            <section id="about"></section>    
+            <article aria-label="introdução">
+                <h2>Venha conosco nesta empreitada!</h2>
+                <section>
+                    <p>O sistema <strong>iONG</strong> foi desenvolvido para facilitar a gestão completa das atividades de organizações do terceiro setor.</p>   
+                    <p>Com ele, é possível centralizar informações, acompanhar projetos em tempo real e otimizar o uso de recursos humanos e financeiros.</p>
+                    <p>Além disso, o iONG promove transparência e colaboração entre equipes, fortalecendo a credibilidade da ONG.</p>
+                    <p> Adotar o iONG é investir em eficiência, sustentabilidade e maior alcance para suas causas.</p>
+                </section>
+            </article>
+        </main>
+
+        <nav>
+            <section id="signup"></section>
+            <article aria-label="Cadastre">
+                <h2>Dê o primeiro passo!</h2>
+                <form onsubmit="Cadastra_Ong(event)">
+                    <fieldset>
+                        <legend>Cadastro de ONGs</legend>
+
+                        <label for="cadastro_nome">Nome Completo:</label>
+                        <input type="text" id="cadastro_nome" name="cadastro_nome" required>
+
+                        <label for="cadastro_nome_ong">Nome da ONG:</label>
+                        <input type="text" id="cadastro_nome_ong" name="cadastro_nome_ong" required>
+
+                        <label for="cadastro_cnpj">CNPJ:</label>
+                        <input type="tel" id="cadastro_cnpj" name="cadastro_cnpj" 
+                            pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}">
+
+                        <label for="cadastro_email">E-mail:</label>
+                        <input type="email" id="cadastro_email" name="cadastro_email" required>
+        
+                        <label for="cadastro_telefone">Telefone:</label>
+                        <input type="tel" id="cadastro_telefone" name="cadastro_telefone" 
+                            pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}" required>
+        
+                        <label for="cadastro_nascimento">Data de Nascimento:</label>
+                        <input type="date" id="cadastro_nascimento" name="cadastro_nascimento" required>
+
+                        <label for="cadastro_logo">Logo marca:</label>
+                        <input type="file" id="cadastro_logo" name="cadastro_logo" required>
+                        <hidden id="url_logo"></hidden>
+        
+                        <label for="cadastro_back_photo">Foto de Fundo:</label>
+                        <input type="file" id="cadastro_back_photo" name="cadastro_back_photo" required>
+                        <hidden id="url_back_photo"></hidden>
+
+                        <input type="submit" id="cadastro_enviar" name="cadastro_enviar" value="Enviar">
+                    </fieldset>
+                </form>
+            </article>
+
+            <section id="share"></section>
+            <article aria-label="Divulgue">
+                <h2>Agora é hora de aparecer!</h2>
+                <form onsubmit="Divulgue_Ong(event)">
+                    <fieldset>
+                        <legend>ONGs Cadastradas</legend>
+
+                        <label for="divulgue_ong">Selecione a ONG:</label>
+                        <input list="ongs" id="divulgue_ong" name="divulgue_ong" required>
+
+                        <label for="divulgue_nome_projeto">Nome do Projeto:</label>
+                        <input type="text" id="divulgue_nome_projeto" name="divulgue_nome_projeto" required>
+
+                        <label for="divulgue_apresentacao">Faça a apresentação do projeto:</label>
+                        <textarea type="text" id="divulgue_apresentacao" name="divulgue_apresentacao" cols="100" rows="10" required>
+                        </textarea>
+
+                        <input type="submit" id="divulgue_enviar" name="divulgue_enviar" value="Enviar">
+
+                    </fieldset>
+                </form>
+            </article>
+
+            <section id="donate"></section>
+            <article aria-label="Doe">
+                <h2>Faça sua doação!</h2>
+                <form onsubmit="Donate_Ong(event)">
+                    <fieldset>
+                        <legend>Doe à uma ONG</legend>
+
+                        <label for="doe_ong">Selecione a ONG:</label>
+                        <input list="ongs" id="doe_ong" name="doe_ong" required>
+
+                        <label for="doe_nome">Nome:</label>
+                        <input type="text" id="doe_nome" name="doe_nome" required>
+
+                        <label for="doe_valor">Valor R$:</label>
+                        <input type="number" id="doe_valor" name="doe_valor" required>
+
+                        <input type="submit" id="doe_enviar" name="doe_enviar" value="Enviar">
+
+                    </fieldset>
+                </form>
+            </article>
+
+            
+            <article aria-label="Sobre">
+                <h2>Veja como ficou seu trabalho!</h2>
+                <form>
+                    <fieldset>
+                        <legend>ONGs Cadastradas</legend>
+
+                        <label for="sobre_ong">Selecione a ONG:</label>
+                        <input list="ongs" id="sobre_ong" name="sobre_ong" onchange="Change_Ong(event)" required>
+
+                        <label for="sobre_nome_projeto">Selecione o Projeto:</label>
+                        <input list="projetos_ongs" id="sobre_nome_projeto" name="sobre_nome_projeto" onchange="Change_Projeto(event)" required>
+
+                        <label for="sobre_apresentacao">Apresentação do projeto:</label>
+                        <textarea type="text" id="sobre_apresentacao" name="sobre_apresentacao" cols="100" rows="10" required>
+                        </textarea>
+                    </fieldset>
+                </form>
+            </article>
+
+            <section id="contacts"></section>
+            <article aria-label="Trabalhe Aqui">
+                <h2>Trabalhe com a sua ONG!</h2>
+                <form onsubmit="Contato_Ong(event)">
+                    <fieldset>
+                        <legend>ONGs</legend>
+
+                        <label for="trabalhe_nome">Nome Completo:</label>
+                        <input type="text" id="trabalhe_nome" name="trabalhe_nome" required>
+
+                        <label for="trabalhe_ong">Selecione a ONG:</label>
+                        <input list="ongs" id="trabalhe_ong" name="trabalhe_ong" required>
+
+                        <label for="trabalhe_nome_projeto">Selecione o Projeto:</label>
+                        <input list="projetos_ongs" id="trabalhe_nome_projeto" name="trabalhe_nome_projeto" required>
+
+                        <label for="trabalhe_cpf">CPF:</label>
+                        <input type="tel" id="trabalhe_cpf" name="trabalhe_cpf" 
+                            pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" required>
+
+                        <label for="trabalhe_email">E-mail:</label>
+                        <input type="email" id="trabalhe_email" name="trabalhe_email" required>
+        
+                        <label for="trabalhe_telefone">Telefone:</label>
+                        <input type="tel" id="trabalhe_telefone" name="trabalhe_telefone" 
+                            pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}" required>
+        
+                        <label for="trabalhe_nascimento">Data de Nascimento:</label>
+                        <input type="date" id="trabalhe_nascimento" name="trabalhe_nascimento" required>
+
+                        <input type="submit" id="trabalhe_enviar" name="trabalhe_enviar" value="Enviar">
+                    </fieldset>
+                </form>
+            </article>
+        </nav>
+
+
+        <footer> 
+            <p>iONG 2025 - &copy; Copyright. Todos os direitos reservados.</p>
+        </footer>
+
+        <script src="js/script.js"></script>
+
+        <datalist id="ongs"></datalist>
+        <datalist id="projetos_ongs"></datalist>
+    </body>
+</html>
