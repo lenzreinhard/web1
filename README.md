@@ -1,2 +1,9 @@
 # web1
-Atividade 1 de programação para web
+Atividade de programação para web
+
+Neste site é possivel:
+
+Cadastrar ONGs
+Cadastrar Projetos das ONGs
+Fazer uma doação
+e Trabalhar com elas
